@@ -4,7 +4,7 @@ const fs=require('fs');
 const server = http.createServer((req,res)=>{
   console.log(req.url);
   console.log(req.method);
-  console.log(req.headers);
+ // console.log(req.headers);
   if(req.url==='/'){
       res.setHeader('Content-Type', 'text/html');
   res.write('<html>');
@@ -23,7 +23,25 @@ const server = http.createServer((req,res)=>{
   res.write('</html>');
   res.end();
   }else if(req.url.toLowerCase()==="/submit-details" && req.method=="POST"){
-      fs.writeFileSync('user.txt', 'Sampada Jadhav');
+    const body =[];
+
+      req.on("data", (chunk) =>{
+             console.log(chunk);
+             body.push(chunk);
+      })
+      req.on('end',() => {
+        const fullBody=Buffer.concat(body).toString();
+        const params= new URLSearchParams(fullBody);
+        console.log(fullBody);
+        //const bodyObject={};
+        //for(const [key,value] of params.entries()){
+          //bodyObject[key]=value;
+        //}
+        const bodyObject= Object.fromEntries(params);
+        console.log(bodyObject);
+        fs.writeFileSync('user.txt',JSON.stringify(bodyObject));
+      })
+      
       res.statusCode=302; //for redirection
       res.setHeader('Location', '/');
       res.end(); 

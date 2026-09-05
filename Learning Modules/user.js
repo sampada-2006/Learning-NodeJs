@@ -39,12 +39,15 @@ const userRequestHandler=(req,res)=>{
         //}
         const bodyObject= Object.fromEntries(params);
         console.log(bodyObject);
-        fs.writeFileSync('user.txt',JSON.stringify(bodyObject));
+        fs.writeFile('user.txt',JSON.stringify(bodyObject),error =>{
+               res.statusCode=302; //for redirection
+        res.setHeader('Location', '/');
+        return res.end(); 
+        } );
+        
       })
       
-      res.statusCode=302; //for redirection
-      res.setHeader('Location', '/');
-      res.end(); 
+      
   }else{
      res.setHeader('Content-Type', 'text/html');
   res.write('<html>');

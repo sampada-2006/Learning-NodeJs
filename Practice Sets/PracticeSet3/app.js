@@ -35,7 +35,7 @@ app.get("/contact-us",(req,res,next)=>{
     </form>`);
 });
 app.post("/contact-us",(req,res,next)=>{
-  console.log("Data posted succesfully",req.url, req.method);
+  console.log("Data posted succesfully",req.url, req.method,req.body);
   res.send(`<p>We will contact you shortly</p>`);
 });
 

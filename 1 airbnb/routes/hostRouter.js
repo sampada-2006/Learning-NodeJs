@@ -9,13 +9,15 @@ const hostRouter=express.Router();
 const rootDir=require('../utils/pathUtil');
 
 hostRouter.get("/add-home",(req,res,next)=>{
-res.sendFile(path.join(rootDir,"views","addHome.html"));
+res.render('addHome',{pageTitle:"Register your home"});
 })
 
+const registerdHomes=[];
 hostRouter.post("/add-home",(req,res,next)=>{
-  console.log(req.body);
-res.sendFile(path.join(rootDir,"views","homeAdded.html"));
+  registerdHomes.push({houseName:req.body.houseName});
+res.render('homeAdded',{pageTitle:'Home added successfully'});
 })
 
-module.exports=hostRouter;
+exports.hostRouter=hostRouter;
+exports.registerdHomes=registerdHomes;
                 

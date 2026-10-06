@@ -7,16 +7,16 @@
         <li class="ml-5">
           <a 
             href="/"
-            class="no-underline text-white font-bold px-4 py-2 rounded hover:bg-[#e54e52] transition-colors duration-300"
+            class="<%= currentPage==='home' ? 'bg-[#e54e52]' : 'hover:bg-[#e54e52]' %> no-underline text-white font-bold px-4 py-2 rounded  transition-colors duration-300"
           >
-            Go to Home
+            Home
           </a>
         </li>
 
         <li class="ml-5">
           <a 
             href="/host/add-home"
-            class="no-underline text-white font-bold px-4 py-2 rounded hover:bg-[#e54e52] transition-colors duration-300"
+            class="<%= currentPage==='addHome' ? 'bg-[#e54e52]' : 'hover:bg-[#e54e52]' %> no-underline text-white font-bold px-4 py-2 rounded transition-colors duration-300"
           >
             Add Home
           </a>

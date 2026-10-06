@@ -6,12 +6,8 @@ const express=require('express');
 const userRouter= express.Router();
 
 //local module
-const rootDir=require("../utils/pathUtil");
-const {registerdHomes}=require('./hostRouter');
+const homesController=require("../controllers/homes");
 
-userRouter.get("/",(req,res,next)=>{
-  console.log(registerdHomes);
-  res.render('home',{registerdHomes:registerdHomes,pageTitle:"airbnb home",currentPage:'home'}); //option for admin to add home list
-})
+userRouter.get("/",homesController.getHomes);                        
 
 module.exports=userRouter;

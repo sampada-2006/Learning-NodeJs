@@ -1,5 +1,3 @@
-//fake database
-const registerdHomes=[];
 
 //core modules
 const path=require('path');
@@ -17,14 +15,20 @@ module.exports=class Home{
     }
 
     save() {
-      registerdHomes.push(this);
+      Home.fetchAll((registerdHomes)=>{
+           registerdHomes.push(this);
       const homeDataPath=path.join(rootDir,'data','homes.json');
       fs.writeFile(homeDataPath,JSON.stringify(registerdHomes),error => {
         console.log("File Writing Concluded", error);
       });
+      });
+      
     }
 
-    static fetchAll() {
-      return registerdHomes;
+    static fetchAll(callback) {
+      const homeDataPath=path.join(rootDir,'data','homes.json');
+      fs.readFile(homeDataPath,(err,data)=>{
+        callback(!err? JSON.parse(data) : []);
+      });
     }
 }

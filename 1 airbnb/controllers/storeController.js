@@ -22,6 +22,17 @@ exports.getFavouriteList=(req,res,next)=>{
   
 };
   
+exports.getHomesDetails=(req,res,next) => {
+  const homeId=req.params.homeId;
+  Home.findById(homeId,home=>{
+    if(!home) {
+      console.log("Home not found");
+      res.redirect("/homes");
+    }else{
+       res.render('store/home-detail',{home:home,pageTitle:"Home Detail",currentPage:'home-details'});
+    }
+  });
 
+};
 
 

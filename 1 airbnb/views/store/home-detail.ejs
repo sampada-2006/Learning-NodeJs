@@ -1,4 +1,4 @@
-```ejs
+
 <%- include('../partials/head') %>
 </head>
 
@@ -47,26 +47,12 @@
             <span class="ml-2 text-lg"><%= home.rating %> / 5</span>
           </div>
         </div>
-
-        <div class="mt-4 flex gap-4">
-          <a
-            href="/homes/<%= home.id %>"
-            class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg transition-colors"
-          >
-            Details
-          </a>
-
-          <button
-            class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg transition-colors"
-          >
-            Book
-          </button>
+        <div class="mt-2">
+           <%- include('../partials/favourite') %>
         </div>
-
       </div>
     </div>
 
   </main>
 </body>
 </html>
-```

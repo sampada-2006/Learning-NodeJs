@@ -43,5 +43,16 @@ exports.postAddHome=(req,res,next)=>{
 Home.fetchAll((registerdHomes)=>res.render('host/host-home-list',{registerdHomes:registerdHomes,pageTitle:"Host Home List",currentPage:'host-homes'})
 );
 };
-      
 
+exports.postDeleteHome=(req,res,next)=>{
+  const homeId=req.params.homeId;
+  console.log('came to delete ',homeId);
+  Home.deleteById(homeId,error =>{
+    if(error){
+      console.log('Error while deleting ',error);
+    }
+    Home.fetchAll((registerdHomes)=>res.render('host/host-home-list',{registerdHomes:registerdHomes,pageTitle:"Host Home List",currentPage:'host-homes'})
+);
+  })
+
+};
